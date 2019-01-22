@@ -1,0 +1,35 @@
+{
+  "name": "graphql_tutorial",
+  "version": "1.0.0",
+  "description": "GraphQL Tutorial via Linkedin learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js --exec babel-node -e js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamShaleen/graphql_tutorial.git"
+  },
+  "author": "Adam Shaleen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamShaleen/graphql_tutorial/issues"
+  },
+  "homepage": "https://github.com/adamShaleen/graphql_tutorial#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "casual": "^1.6.0",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "graphql": "^14.1.1",
+    "graphql-tools": "^4.0.3",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.6",
+    "nodemon": "^1.18.9",
+    "sequelize": "^4.42.0",
+    "sqlite3": "^4.0.6"
+  }
+}
