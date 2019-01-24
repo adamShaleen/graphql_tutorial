@@ -1,46 +1,57 @@
 import mongoose from 'mongoose';
-import { Friends } from './dbConnection';
+import { Dudes, Aliens } from './dbConnection';
 
 // Resolver map
 export const resolvers = {
     Query: {
-        getFriend: ({ id }) => {
-            return new Friend(id, friendDatabase[id]);
+        getDudes: () => {
+            return Dudes.find();
+        },
+        getOneDude: (root, { id }) => {
+            return new Promise((resolve, object) => {
+                Dudes.findById(id, (err, dude) => {
+                    if (err) reject(err);
+                    else resolve(dude);
+                })
+            })
+        },
+        getAliens: () => {
+            return Aliens.findAll();
         }
     },
     Mutation: {
-        createFriend: (root, { input }) => {
-            const newFriend = new Friends({
+        createDude: (root, { input }) => {
+            const newDude = new Dudes({
                 firstName: input.firstName,
                 lastName: input.lastName,
                 age: input.age,
                 language: input.language,
-                email: input.email,
-                contacts: input.contacts
+                bikes: input.bikes,
+                dudes: input.dudes
             })
 
-            newFriend.id = newFriend._id;
+            newDude.id = newDude._id;
 
             return new Promise((resolve, object) => {
-                newFriend.save((err) => {
+                newDude.save((err) => {
                     if (err) reject(err);
-                    else resolve(newFriend); 
+                    else resolve(newDude); 
                 })
             });
         },
-        updateFriend: (root, { input }) => {
+        updateDude: (root, { input }) => {
             return new Promise((resolve, object) => {
-                Friends.findOneAndUpdate({_id: input.id}, input, {new: true}, (err, friend) => {
+                Dudes.findOneAndUpdate({_id: input.id}, input, {new: true}, (err, dude) => {
                     if (err) reject(err);
-                    else resolve(friend);
+                    else resolve(dude);
                 })
             })
         },
-        deleteFriend: (root, { id }) => {
+        deleteDude: (root, { id }) => {
             return new Promise((resolve, object) => {
-                Friends.remove({_id: id}, (err) => {
+                Dudes.remove({_id: id}, (err) => {
                     if (err) reject(err);
-                    else resolve(`Deleted Friend with id: ${id}`);
+                    else resolve(`Deleted Dude with id: ${id}`);
                 })
             })
         }

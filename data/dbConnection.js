@@ -6,11 +6,11 @@ import casual from 'casual';
 
 // Mongo connection
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/friends", {
+mongoose.connect("mongodb://localhost/dudes", {
     useNewUrlParser: true
 });
 
-const friendSchema = new mongoose.Schema({
+const dudesSchema = new mongoose.Schema({
     firstName: {
         type: String
     },
@@ -23,15 +23,15 @@ const friendSchema = new mongoose.Schema({
     language: {
         type: String
     },
-    email: {
-        type: String
+    bikes: {
+        type: Array
     },
-    contacts: {
+    dudes: {
         type: Array
     }
 });
 
-const Friends = mongoose.model("friends", friendSchema);
+const Dudes = mongoose.model("dudes", dudesSchema);
 
 // SQL
 const sequelize = new Sequelize('database', null, null, {
@@ -55,4 +55,4 @@ Aliens.sync({ force: true }).then(() => {
     });
 });
 
-export { Friends, Aliens };
+export { Dudes, Aliens };

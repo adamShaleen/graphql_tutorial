@@ -3,14 +3,26 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 const typeDefs =`
 
-    type Friend {
+    type Dude {
         id: ID
         firstName: String
         lastName: String
         age: Int
         language: Language
-        email: String
-        contacts: [Contact]
+        bikes: [Bike]
+        dudes: [Dude]
+    }
+
+    type Bike {
+        id: ID
+        makeAndModel: String!
+        bikeType: BikeType
+    }
+
+    enum BikeType {
+        BMX,
+        MTB,
+        COMMUTE
     }
 
     type Alien {
@@ -20,11 +32,6 @@ const typeDefs =`
         planet: String
     }
 
-    type Contact {
-        firstName: String
-        lastName: String
-    }
-
     enum Language {
         ENGLISH,
         SPANISH,
@@ -32,28 +39,31 @@ const typeDefs =`
     }
 
     type Query {
-        getFriend(id: ID): Friend
+        getDudes: [Dude]
+        getOneDude(id: ID!): Dude
+        getAliens: [Alien]
     }
 
-    input FriendInput {
+    input DudeInput {
         id: ID
-        firstName: String!
+        firstName: String
         lastName: String
         age: Int
         language: Language
-        email: String
-        contacts: [ContactInput]
+        bikes: BikeInput
+        dudes: [DudeInput]
     }
 
-    input ContactInput {
-        firstName: String
-        lastName: String
+    input BikeInput {
+        id: ID
+        makeAndModel: String
+        bikeType: BikeType
     }
 
     type Mutation {
-        createFriend(input: FriendInput): Friend
-        updateFriend(input: FriendInput): Friend
-        deleteFriend(id: ID!): String
+        createDude(input: DudeInput): Dude
+        updateDude(input: DudeInput): Dude
+        deleteDude(id: ID!): String
     }
 `;
 
