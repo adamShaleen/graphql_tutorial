@@ -22,7 +22,8 @@ const typeDefs =`
     enum BikeType {
         BMX,
         MTB,
-        COMMUTE
+        COMMUTE,
+        ALLROAD
     }
 
     type Alien {
@@ -50,7 +51,7 @@ const typeDefs =`
         lastName: String
         age: Int
         language: Language
-        bikes: BikeInput
+        bikes: [BikeInput]
         dudes: [DudeInput]
     }
 
